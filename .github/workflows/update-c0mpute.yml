@@ -1,0 +1,56 @@
+name: c0mpute formula
+
+on:
+  schedule:
+    - cron: "17 */6 * * *"
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "c0mpute version (default: latest release)"
+        required: false
+  pull_request:
+    paths: ["Formula/c0mpute.rb", "scripts/update-c0mpute.sh", ".github/workflows/update-c0mpute.yml"]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: c0mpute-formula-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  update:
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Regenerate formula from the release
+        run: ./scripts/update-c0mpute.sh "${{ inputs.version }}"
+      - name: Test install
+        run: |
+          eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+          brew tap profullstack/tap "$GITHUB_WORKSPACE"
+          cp Formula/c0mpute.rb "$(brew --repository profullstack/tap)/Formula/c0mpute.rb"
+          brew install profullstack/tap/c0mpute
+          brew test profullstack/tap/c0mpute
+      - name: Commit if changed
+        run: |
+          if git diff --quiet -- Formula/c0mpute.rb; then echo "up to date"; exit 0; fi
+          v=$(sed -n 's/^  version "\(.*\)"/\1/p' Formula/c0mpute.rb)
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -am "c0mpute ${v}"
+          git push
+
+  test:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install and test
+        run: |
+          eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+          brew tap profullstack/tap "$GITHUB_WORKSPACE"
+          cp Formula/c0mpute.rb "$(brew --repository profullstack/tap)/Formula/c0mpute.rb"
+          brew install profullstack/tap/c0mpute
+          brew test profullstack/tap/c0mpute
