@@ -42,8 +42,8 @@ class C0mpute < Formula
         c0mpute worker start -d
 
       This formula installs the c0mpute CLI only. For the full node stack
-      (coinpay and infernet CLIs, inference payouts), use the installer:
-        curl -fsSL https://c0mpute.com/install.sh | sh
+      (coinpay and infernet CLIs, inference payouts), use the installer
+      described at https://c0mpute.com (https://c0mpute.com/install.sh).
 
       Earnings depend on network demand and vary; see https://c0mpute.com/nodes
     EOS

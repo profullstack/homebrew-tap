@@ -25,7 +25,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Regenerate formula from the release
-        run: ./scripts/update-c0mpute.sh "${{ inputs.version }}"
+        env:
+          VERSION: ${{ inputs.version }}
+        run: ./scripts/update-c0mpute.sh "$VERSION"
       - name: Test install
         run: |
           eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
