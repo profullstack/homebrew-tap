@@ -3,28 +3,28 @@
 class C0mpute < Formula
   desc "Run a node on the c0mpute decentralized compute network"
   homepage "https://c0mpute.com"
-  version "0.3.112"
+  version "0.3.115"
   license "MIT"
 
   on_macos do
     on_arm do
-      url "https://github.com/profullstack/c0mpute/releases/download/v0.3.112/c0mpute-darwin-aarch64.tar.gz"
-      sha256 "8d21743ebf293140afbeb4efb86b5ab367e6c29efa13b2aac115e6dda8179837"
+      url "https://github.com/profullstack/c0mpute/releases/download/v0.3.115/c0mpute-darwin-aarch64.tar.gz"
+      sha256 "9fc86ddadcd66a7b094168a5df5bd382f47622665cc84062a6edf2f6eda0f792"
     end
     on_intel do
-      url "https://github.com/profullstack/c0mpute/releases/download/v0.3.112/c0mpute-darwin-x86_64.tar.gz"
-      sha256 "005c80e7ad1989ca562d0288bc9c15ad8f6f6dd10cb562a8817e027abe400ff3"
+      url "https://github.com/profullstack/c0mpute/releases/download/v0.3.115/c0mpute-darwin-x86_64.tar.gz"
+      sha256 "0d58c0d8d0081cb788b587ef5325e077f4a963326cfadc6f0c6b56d5937d5dff"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/profullstack/c0mpute/releases/download/v0.3.112/c0mpute-linux-aarch64.tar.gz"
-      sha256 "b70d1e62f78761cb5c1b27190912084e6d0f57b6843535722fe450d1b72b7b03"
+      url "https://github.com/profullstack/c0mpute/releases/download/v0.3.115/c0mpute-linux-aarch64.tar.gz"
+      sha256 "f8cd803c746ed928bff046837b62d32254885957aa2d58e3708e0b65e5bf9c09"
     end
     on_intel do
-      url "https://github.com/profullstack/c0mpute/releases/download/v0.3.112/c0mpute-linux-x86_64.tar.gz"
-      sha256 "ff8b382101c808321cef3e5dedc3710b502cbfa0d26be935e722b489fcd4bcbf"
+      url "https://github.com/profullstack/c0mpute/releases/download/v0.3.115/c0mpute-linux-x86_64.tar.gz"
+      sha256 "f913b9a3127732bc6ff92bea40c2d32a14bad6b616194be13def0377d0f35361"
     end
   end
 
